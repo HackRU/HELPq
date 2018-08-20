@@ -17,7 +17,6 @@ chart:chart
 fourseven:scss
 semantic:ui
 flemay:less-autoprefixer
-standard-minifiers
 meteor-base
 mobile-experience
 mongo
@@ -32,3 +31,8 @@ ejson
 spacebars
 check
 http
+standard-minifier-css
+standard-minifier-js
+hharnisc:meteor-nock
+meteortesting:mocha
+modules
