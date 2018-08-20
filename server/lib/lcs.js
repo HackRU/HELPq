@@ -66,4 +66,5 @@ Meteor.addLCSLogin = function(config){
   Meteor.methods({
     LCSLoginCheck: LCSLoginCheck
   });
+  return {getLCSToken, isLCSMentor, lcsLoginCheck};
 }
