@@ -3,3 +3,5 @@
 private/config.json
 .sass-cache/
 *~
+*node_modules
+*yarn.lock
