@@ -22,12 +22,12 @@ class Queue extends Component {
         
     }
     render() {
-        const roles = this.props.client.userData.roles;
+        const role = this.props.client.userData.role;
         const myUsername = this.props.client.userData.username;
         let tickets = [];
-        if (roles.admin) {
+        if (role.admin) {
             tickets = this.state.tickets;
-        } else if (roles.mentor) {
+        } else if (role.mentor) {
             tickets = this.state.tickets.filter(withStatus(status.open));
         } else {
             tickets = this.state.tickets

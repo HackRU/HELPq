@@ -17,7 +17,7 @@ const clientOptions = {
         {text:"claimed", owner:"chad", status: "claimed"},
         {text:"heman", owner:"heman", status: "open"},
     ],
-    roles: {admin: true}
+    role: {admin: true}
 };
 
 class App extends Component {
@@ -35,12 +35,9 @@ class App extends Component {
                 client: null
             };
         }
-        
-        this.login = this.login.bind(this);
-        this.logout = this.logout.bind(this);
     }
-    
-    login(username, pass) {
+
+    login = (username, pass) => {
         getToken(username, pass)
             .then((hash) => new MentorqClient(hash, clientOptions))
             .then((client) => {
@@ -51,12 +48,12 @@ class App extends Component {
             })
             .catch(alert);
     }
-    
-    logout() {
+
+    logout = () => {
         this.setState({loggedIn: false});
         setStoredToken(null);
     }
-    
+
     render() {
         return (
             <div className="App">
@@ -65,7 +62,7 @@ class App extends Component {
                 <Login loggedIn={this.state.loggedIn}
                           onLogin={this.login}
                           onLogout={this.logout} />
-              </div>
+                </div>
             {this.state.loggedIn?
              <Queue client={this.state.client} />
               : <p>please login</p> }

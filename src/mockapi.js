@@ -4,7 +4,7 @@ const status = {
     closed: "closed"
 };
 
-const defaultRoles = {
+const defaultRole = {
     mentor: false,
     hacker: true,
     admin: false,
@@ -55,13 +55,13 @@ class MentorqClient {
     tickets = [];
     ticketCallbacks = [];
 
-    // you can pass in {roles: {role: true}} to give roles to user
-    constructor(token, {roles, tickets = []} = {}) {
+    // you can pass in {role: {role: true}} to give roles to user
+    constructor(token, {role, tickets = []} = {}) {
         this.tickets = tickets;
         this.userData = {
             token,
             username: "heman",
-            roles: Object.assign({}, defaultRoles, roles)
+            role: Object.assign({}, defaultRole, role)
         }
     }
 
@@ -70,32 +70,33 @@ class MentorqClient {
         return this.tickets;
     }
 
-    async saveTicket(text) {
+
+    async newTicket(text) {
         let myTicket = await this.getTickets()
             .then(from(this.userData.username))
             .then(withStatus(status.open))
             .then(first);
-        
+
         if (myTicket !== undefined && !this.userData.role.admin) {
             throw new TicketExists();
         }
-        
+
         const ticket = {
             status: status.open,
             text,
             owner: this.userData.username
         }
-        
+
         this.tickets.push(ticket);
-        this.ticketCallbacks.foreach(f => f(this.tickets));
+        this.ticketCallbacks.forEach(f => f(this.tickets));
     }
-    
+
     onTickets(callback) {
         this.ticketCallbacks.push(callback);
     }
 
     setStatus(ticket) {
-        
+
     }
 
     // TODO
