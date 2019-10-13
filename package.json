@@ -10,6 +10,7 @@
   },
   "homepage": "https://github.com/HackRU/helpq#readme",
   "dependencies": {
+    "@babel/runtime": "^7.6.3",
     "babel-runtime": "^6.26.0"
   }
 }
